@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # java-chat-server
 Chat server developed as final project for Networking class.
 
