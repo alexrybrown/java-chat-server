@@ -1,4 +1,4 @@
-/**
+package Server; /**
  * This thread will handle constructing verfied clients
  * and handle removing the clients from the server
  *
@@ -16,14 +16,14 @@ public class ClientManagerConnection implements Runnable {
     private static final String WELCOME_MESSAGE = "Welcome to the server!?";
     // Index correlates to the code for each string
     private static final String[] COMMAND_CODES = {
-        "Client requests a username",
+        "Server.Client requests a username",
         "Server accepts username request",
         "Server denies username request",
-        "Client sends general message to server",
-        "Client sends private message to server",
+        "Server.Client sends general message to server",
+        "Server.Client sends private message to server",
         "Server sends general message to user",
         "Server sends private message to user",
-        "Client sends a disconnect request",
+        "Server.Client sends a disconnect request",
         "Server says goodbye",
         "Server tells client that user has disconnected",
         "Server tels client that user has connected"
@@ -78,7 +78,7 @@ public class ClientManagerConnection implements Runnable {
                 }
             }
         }
-        catch (IOException ioe) { }
-        catch (InterruptedException ie) { }
+        catch (IOException ioe) { System.err.println(ioe.getMessage()); }
+        catch (InterruptedException ie) { System.err.println(ie.getMessage()); }
     }
 }

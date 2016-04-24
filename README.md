@@ -11,16 +11,16 @@ Chat server developed as final project for Networking class.
 * executor in clientManager
 * signals semaphore for server and master slave to signal clientManager
 * MasterSlave thread construction moved to clientManager
-* Client class moved inside clientManager
+* Server.Client class moved inside clientManager
 
 ### v0.11 ###
 
 * 4/13/16
-* Client class
+* Server.Client class
 * Verification thread
 * Logging idea
 * Structure redesign
-* Client details hash map
+* Server.Client details hash map
 
 ### v0.10 ###
 

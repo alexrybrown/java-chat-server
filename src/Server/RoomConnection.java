@@ -1,4 +1,4 @@
-/**
+package Server; /**
  * This thread will handle constructing verfied clients
  * and handle removing the clients from the server
  *
@@ -35,13 +35,14 @@ public class RoomConnection implements Runnable {
         String line = null;
         String response = null;
         int commandCode = -1;
-
         try {
             // Make broadcaster for this room
             Runnable broadcasterThread = new BroadcasterConnection(clientDetails, broadcastToClients, signalBroadcaster);
             exec.execute(broadcasterThread);
 
             while(true) {
+                // Sleep for a milliseconds
+                Thread.sleep(100);
                 // Go through client details and see if any clients have posted anything
                 temp = clientDetails.values().toArray();
                 clients = Arrays.copyOf(temp, temp.length, Client[].class);
@@ -56,16 +57,18 @@ public class RoomConnection implements Runnable {
                         } else { // All others we will forward to the broadcaster
                             commandCode = -1;
                         }
-                        // Handle disconnect request
-                        if(commandCode == 7) {
-                            // Write the disconnect response to client
-                            toClient = new BufferedOutputStream(client.getSocket().getOutputStream());
-                            response = "8\r\n";
-                            toClient.write(response.getBytes());
-                            toClient.flush();
-                            // Add them to the clients that need to disconnect and then signal the client manager
-                            clientDisconnects.add(client);
-                            signalClientManager.release();
+                        switch(commandCode) {
+                            // Handle disconnect request
+                            case (7):
+                                // Write the disconnect response to client
+                                toClient = new BufferedOutputStream(client.getSocket().getOutputStream());
+                                response = "8\r\n";
+                                toClient.write(response.getBytes());
+                                toClient.flush();
+                                // Add them to the clients that need to disconnect and then signal the client manager
+                                clientDisconnects.add(client);
+                                signalClientManager.release();
+                                break;
                         }
                         // Pass work on to the broadcaster (in the case of the disconnect, broadcaster still needs to send mass message)
                         client.addMessage(line);
@@ -79,6 +82,8 @@ public class RoomConnection implements Runnable {
                 }
             }
         }
-        catch (IOException ioe) { System.err.println(ioe); }
+        catch (InterruptedException ie) { System.err.println(ie.getMessage()); }
+        catch (IOException ioe) { System.err.println(ioe.getMessage()); }
+
     }
 }

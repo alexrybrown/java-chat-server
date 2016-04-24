@@ -1,4 +1,4 @@
-/**
+package Server; /**
  * A chat server listening on port 1337. 
  * This chat server services clients in a chat room
  *
@@ -40,7 +40,7 @@ public class ChatServer
                 signalClientManager.release();
 			}
 		}
-        catch (IOException ioe) { }
+        catch (IOException ioe) { System.err.println(ioe.getMessage()); }
         finally {
             if (socket != null)
 				socket.close();

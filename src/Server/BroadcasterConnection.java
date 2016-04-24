@@ -1,4 +1,4 @@
-/**
+package Server; /**
  * This thread will handle constructing verfied clients
  * and handle removing the clients from the server
  *
@@ -46,14 +46,14 @@ public class BroadcasterConnection implements Runnable {
                 }
             }
         }
-        catch (InterruptedException ie) { }
+        catch (InterruptedException ie) { System.err.println(ie.getMessage()); }
     }
 
     /**
      * Parses the message sent it and then send it to the send function to be sent to the
      * relevant clients
      *
-     * @param client Client that wrote the message
+     * @param client Server.Client that wrote the message
      * @param message Full message sent by the client to the server
      */
     private void parseAndSend(Client client, String message) {
@@ -62,53 +62,57 @@ public class BroadcasterConnection implements Runnable {
         String broadcastMessage = null;
         String fromUser = null;
         String toUser = null;
-        int indexFirstSpace = -1;
-        int indexSecondSpace = -1;
-        int indexThirdSpace = -1;
+        Object[] temp = null;
+        Client[] clients = null;
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy:MM:dd:HH:mm:ss");
         fmt.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         // If it is a char there won't be a space
-        if(message.length() == 1) {
+        if (message.length() == 1) {
             commandCode = Integer.parseInt(Character.toString(message.charAt(0)));
-        } else { // All others will have a space
+        } else if (message.length() != 0) { // All others will have a space
             commandCode = Integer.parseInt(message.substring(0, message.indexOf(' ')));
         }
-        // Client sent a general message
-        if (commandCode == 3) {
-            // Parse relevant information
-            parsedMessage = message.substring(message.indexOf(' ') + 1);
-            // Setup message, grab clients, and send
-            broadcastMessage = "5 " + client.getUsername() + " " + fmt.format(timestamp) + " " + parsedMessage + "\r\n";
-            Object[] temp = clientDetails.values().toArray();
-            Client[] clients = Arrays.copyOf(temp, temp.length, Client[].class);
-            send(clients, broadcastMessage);
-        } else if (commandCode == 4) { // Client sent a private message
-            // Get the different spaces
-            String[] split = message.split("\\p{javaSpaceChar}", 4);
-            // Parse relevant information
-            fromUser = split[1];
-            toUser = split[2];
-            parsedMessage = split[3];
-            // Setup message, grab clients, and send
-            broadcastMessage = "6 " + fromUser + " " + toUser + " " + fmt.format(timestamp) + " " + parsedMessage + "\r\n";
-            Client[] clients = {clientDetails.get(fromUser), clientDetails.get(toUser)};
-            send(clients, broadcastMessage);
-        } else if (commandCode == 7) {
-            broadcastMessage = "9 " + client.getUsername() + "\r\n";
-            Object[] temp = clientDetails.values().toArray();
-            ArrayList<Client> clients = new ArrayList<Client>();
-            for(Object obj : temp) {
-                Client tempClient = (Client) obj;
-                // Don't add the client that is disconnecting
-                if (!(tempClient.getUsername().equals(client.getUsername()))) {
-                    clients.add(tempClient);
+        switch (commandCode) {
+            // Server.Client sent a general message
+            case (3):
+                // Parse relevant information
+                parsedMessage = message.substring(message.indexOf(' ') + 1);
+                // Setup message, grab clients, and send
+                broadcastMessage = "5 " + client.getUsername() + " " + fmt.format(timestamp) + " " + parsedMessage + "\r\n";
+                temp = clientDetails.values().toArray();
+                clients = Arrays.copyOf(temp, temp.length, Client[].class);
+                send(clients, broadcastMessage);
+                break;
+            // Server.Client sent a private message
+            case (4):
+                // Get the different spaces
+                String[] split = message.split("\\p{javaSpaceChar}", 4);
+                // Parse relevant information
+                fromUser = split[1];
+                toUser = split[2];
+                parsedMessage = split[3];
+                // Setup message, grab clients, and send
+                broadcastMessage = "6 " + fromUser + " " + toUser + " " + fmt.format(timestamp) + " " + parsedMessage + "\r\n";
+                Client[] twoClients = {clientDetails.get(fromUser), clientDetails.get(toUser)};
+                send(twoClients, broadcastMessage);
+                break;
+            case (7):
+                broadcastMessage = "9 " + client.getUsername() + "\r\n";
+                temp = clientDetails.values().toArray();
+                ArrayList<Client> clientsArray = new ArrayList<Client>();
+                for (Object obj : temp) {
+                    Client tempClient = (Client) obj;
+                    // Don't add the client that is disconnecting
+                    if (!(tempClient.getUsername().equals(client.getUsername()))) {
+                        clientsArray.add(tempClient);
+                    }
                 }
-            }
-            Client[] clientsArray = Arrays.copyOf(clients.toArray(), clients.toArray().length, Client[].class);
-            send(clientsArray, broadcastMessage);
+                clients = Arrays.copyOf(clientsArray.toArray(), clientsArray.toArray().length, Client[].class);
+                send(clients, broadcastMessage);
+                break;
         }
     }
 
@@ -128,6 +132,6 @@ public class BroadcasterConnection implements Runnable {
                 toClient.flush();
             }
         }
-        catch (IOException ioe) { }
+        catch (IOException ioe) { System.err.println(ioe.getMessage()); }
     }
 }

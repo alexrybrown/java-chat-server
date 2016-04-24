@@ -1,4 +1,4 @@
-/**
+package Server; /**
  * This thread will service single clients
  * and check their usernames before sending them into the chat room
  *

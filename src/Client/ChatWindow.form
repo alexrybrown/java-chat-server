@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ChatWindow">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Client.ChatWindow">
   <grid id="27dc6" binding="container" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
@@ -73,7 +73,7 @@
                   <component id="ffee9" class="javax.swing.JTextArea" binding="UsernameGuidelines">
                     <constraints/>
                     <properties>
-                      <text value="Usernames must only contain underscores and alphanumeric characters. Cannot exceed 16 characters."/>
+                      <text value="Usernames must only contain underscores and alphanumeric characters. &#10;Cannot exceed 16 characters.&#10;"/>
                     </properties>
                   </component>
                 </children>

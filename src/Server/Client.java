@@ -1,5 +1,5 @@
-/**
- * Client class to store all relevant information for threads dealing with the client
+package Server; /**
+ * Server.Client class to store all relevant information for threads dealing with the client
  *
  * @Author Alex Brown
  * @Author Andy Makous

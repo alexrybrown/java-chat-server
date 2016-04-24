@@ -1,3 +1,5 @@
+package Client;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +9,7 @@ import java.awt.*;
 public class CustomJFrame extends JFrame {
     private JTextArea chat;
     private JTextArea userList;
+    private JTextArea usernameGuidelines;
 
     public CustomJFrame() throws HeadlessException {
         super();
@@ -38,5 +41,13 @@ public class CustomJFrame extends JFrame {
 
     public JTextArea getUserList() {
         return userList;
+    }
+
+    public void setUsernameGuidelines(JTextArea usernameGuidelines) {
+        this.usernameGuidelines = usernameGuidelines;
+    }
+
+    public JTextArea getUsernameGuidelines() {
+        return usernameGuidelines;
     }
 }

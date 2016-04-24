@@ -1,4 +1,4 @@
-/**
+package Client; /**
  * Creates the GU Interface AKA GUI (but GU Interface is much better).
  *
  * @Author Alex Brown
@@ -6,12 +6,9 @@
  */
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.net.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class ChatWindow {
     // Window design
@@ -26,8 +23,6 @@ public class ChatWindow {
     private JButton Send;
     // Communication
     private static Socket socket = null;
-    // Executor
-    public static final Executor exec = Executors.newCachedThreadPool();
 
 
     public ChatWindow() {
@@ -39,6 +34,7 @@ public class ChatWindow {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 ChatController.connect(UsernameInput.getText());
+                UsernameInput.setText("");
             }
         });
         // Send username with enter
@@ -47,8 +43,10 @@ public class ChatWindow {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 // Enter is pressed
-                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     ChatController.connect(UsernameInput.getText());
+                    UsernameInput.setText("");
+                }
             }
         });
         // Send chat message with enter
@@ -57,9 +55,10 @@ public class ChatWindow {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 // Enter is pressed
-                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     ChatController.processMessageField(Message.getText());
-
+                    Message.setText("");
+                }
             }
         });
         // Send chat message by clicking on button
@@ -68,12 +67,18 @@ public class ChatWindow {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 ChatController.processMessageField(Message.getText());
+                Message.setText("");
             }
         });
 
     }
 
     public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("Usage: java ChatWindow <running server IP address>");
+            System.exit(0);
+        }
+
         CustomJFrame window = new CustomJFrame("ChatWindow");
         window.addWindowListener(new WindowAdapter() {
             @Override
@@ -86,12 +91,13 @@ public class ChatWindow {
         window.setContentPane(cw.container);
         window.setChat(cw.ChatText);
         window.setUserList(cw.UserList);
+        window.setUsernameGuidelines(cw.UsernameGuidelines);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
 
         try {
-            socket = new Socket("localhost", 1337);
+            socket = new Socket(args[0], 1337);
         } catch (IOException ioe) { System.err.println(ioe.getMessage()); }
 
         Runnable chatControllerThread = new ChatController(socket, window);
