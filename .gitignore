@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-.idea/*
 *.iml
 *.class
 =======
@@ -15,4 +13,3 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
->>>>>>> 11d727c79970e2738b8c78c9b9b91cd002cb2d4d
