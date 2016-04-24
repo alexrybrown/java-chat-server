@@ -9,15 +9,21 @@ Run the ChatWindow class located inside of the src/Client/ directory from the pr
 ### Server ###
 
 ChatServer                 ->    ClientManagerConnection
+
 ClientManagerConnection    ->    RoomConnection
+
 ClientManagerConnection    ->    ClientVerificationConnection
+
 RoomConnection             ->    ClientManagerConnection
+
 RoomConnection             ->    BroadcastConnection
+
 BroadcastConnection        ->    (Writes to client buffer)
 
 ### Client ###
 
 ChatWindow                 ->    ChatController
+
 ChatController             ->    (Writes to server buffer)
 
 # Change Log
