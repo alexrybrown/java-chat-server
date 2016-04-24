@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_java-chat-server" default="compile.module.java-chat-server">
+  <dirname property="module.java-chat-server.basedir" file="${ant.file.module_java-chat-server}"/>
+  
+  <property name="module.jdk.home.java-chat-server" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.java-chat-server" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.java-chat-server" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.java-chat-server" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="java-chat-server.output.dir" value="${module.java-chat-server.basedir}/out/production/java-chat-server"/>
+  <property name="java-chat-server.testoutput.dir" value="${module.java-chat-server.basedir}/out/test/java-chat-server"/>
+  
+  <path id="java-chat-server.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="java-chat-server.module.production.classpath">
+    <path refid="${module.jdk.classpath.java-chat-server}"/>
+  </path>
+  
+  <path id="java-chat-server.runtime.production.module.classpath">
+    <pathelement location="${java-chat-server.output.dir}"/>
+  </path>
+  
+  <path id="java-chat-server.module.classpath">
+    <path refid="${module.jdk.classpath.java-chat-server}"/>
+    <pathelement location="${java-chat-server.output.dir}"/>
+  </path>
+  
+  <path id="java-chat-server.runtime.module.classpath">
+    <pathelement location="${java-chat-server.testoutput.dir}"/>
+    <pathelement location="${java-chat-server.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.java-chat-server">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.java-chat-server">
+    <patternset refid="excluded.from.module.java-chat-server"/>
+  </patternset>
+  
+  <path id="java-chat-server.module.sourcepath">
+    <dirset dir="${module.java-chat-server.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.java-chat-server" depends="compile.module.java-chat-server.production,compile.module.java-chat-server.tests" description="Compile module java-chat-server"/>
+  
+  <target name="compile.module.java-chat-server.production" depends="register.custom.compilers" description="Compile module java-chat-server; production classes">
+    <mkdir dir="${java-chat-server.output.dir}"/>
+    <javac2 destdir="${java-chat-server.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.java-chat-server}/javac">
+      <compilerarg line="${compiler.args.java-chat-server}"/>
+      <bootclasspath refid="java-chat-server.module.bootclasspath"/>
+      <classpath refid="java-chat-server.module.production.classpath"/>
+      <src refid="java-chat-server.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.java-chat-server"/>
+    </javac2>
+    
+    <copy todir="${java-chat-server.output.dir}">
+      <fileset dir="${module.java-chat-server.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.java-chat-server.tests" depends="register.custom.compilers,compile.module.java-chat-server.production" description="compile module java-chat-server; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.java-chat-server" description="cleanup module">
+    <delete dir="${java-chat-server.output.dir}"/>
+    <delete dir="${java-chat-server.testoutput.dir}"/>
+  </target>
+</project>
