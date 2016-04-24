@@ -1,5 +1,5 @@
 # java-chat-server
-Chat server developed as final project for Networking class.
+Chat server developed as final project for Networking class. Requires Intellij IDE because of GUI dependencies.
 
 # GUI Utility
 Utilized the Intellij GUI builder to get the structure of our chat server in order before adding in all of the extra logic.
