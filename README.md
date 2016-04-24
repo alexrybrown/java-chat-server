@@ -28,6 +28,3 @@ Chat server developed as final project for Networking class.
 * 4/9/16
 * Mapping structure
 * Designing variables
-=======
-# java-chat-server
->>>>>>> 11d727c79970e2738b8c78c9b9b91cd002cb2d4d
