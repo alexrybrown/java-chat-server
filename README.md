@@ -1,6 +1,9 @@
 # java-chat-server
 Chat server developed as final project for Networking class.
 
+# GUI Utility
+Utilized the Intellij GUI builder to get the structure of our chat server in order before adding in all of the extra logic.
+
 # Build Instructions
 Run the ChatWindow class located inside of the src/Client/ directory from the project root. Pass the ip address of the host you are trying to connect to. Next run the ChatServer class inside src/Server/ from the project root. You will have to create multiple chat rooms on different machines since our thread servicing the ChatWindow requires static access calls. You can also telnet in to see the functionality as well without needing to create multiple windows.
 
