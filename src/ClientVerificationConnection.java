@@ -2,7 +2,8 @@
  * This thread will service single clients
  * and check their usernames before sending them into the chat room
  *
- * @Author Alex Brown and Andy Makous
+ * @Author Alex Brown
+ * @Author Andy Makous
  */
 
 
@@ -39,7 +40,7 @@ public class ClientVerificationConnection implements Runnable {
             toClient = new BufferedOutputStream(client.getOutputStream());
             // First message will be the client username
             message = fromClient.readLine();
-            username = message.substring(message.indexOf(' ') + 1, message.indexOf("\r\n"));
+            username = message.substring(message.indexOf(' ') + 1);
             temp = clientDetails.keySet().toArray();
             usernames = Arrays.copyOf(temp, temp.length, String[].class);
             // Check and see if the username is already in use
@@ -53,7 +54,7 @@ public class ClientVerificationConnection implements Runnable {
             }
             listOfUsers+=username;
             // If the username is more than 16 chars deny the user
-            if (username.length() > 16) {
+            if (username.length() == 0 || username.length() > 16) {
                 denied = true;
             }
             // Deny user and close connection without saying anymore
@@ -82,7 +83,7 @@ public class ClientVerificationConnection implements Runnable {
                 }
             }
         }
-        catch (IOException ioe) { }
+        catch (IOException ioe) { System.err.println(ioe.getMessage()); }
     }
 }
 

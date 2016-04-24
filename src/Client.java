@@ -1,7 +1,8 @@
 /**
  * Client class to store all relevant information for threads dealing with the client
  *
- * @Author Alex Brown and Andy Makou
+ * @Author Alex Brown
+ * @Author Andy Makous
  */
 
 import java.net.*;

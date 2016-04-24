@@ -2,7 +2,8 @@
  * This thread will handle constructing verfied clients
  * and handle removing the clients from the server
  *
- * @Author Alex Brown and Andy Makous
+ * @Author Alex Brown
+ * @Author Andy Makous
  */
 
 

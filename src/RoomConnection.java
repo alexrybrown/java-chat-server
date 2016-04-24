@@ -50,8 +50,8 @@ public class RoomConnection implements Runnable {
                     // Read from the client until the buffer is clear
                     while(fromClient.ready()) {
                         line = fromClient.readLine();
-                        // The command code we are looking for will be 5 chars long and be a number less than 10
-                        if(line.length() == 5) {
+                        // The command code we are looking for will be a char long and be a number less than 10
+                        if(line.length() == 1) {
                             commandCode = Integer.parseInt(Character.toString(line.charAt(0)));
                         } else { // All others we will forward to the broadcaster
                             commandCode = -1;

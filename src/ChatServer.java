@@ -4,7 +4,8 @@
  *
  * This services each request in a separate thread.
  *
- * @author - Alex Brown and Andy Makous
+ * @Author Alex Brown
+ * @Author Andy Makous
  */
 
 
