@@ -52,6 +52,10 @@ public class ClientVerificationConnection implements Runnable {
                 listOfUsers += existing + ",";
             }
             listOfUsers+=username;
+            // If the username is more than 16 chars deny the user
+            if (username.length() > 16) {
+                denied = true;
+            }
             // Deny user and close connection without saying anymore
             if(denied) {
                 response = "2\r\n";
