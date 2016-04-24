@@ -1,10 +1,12 @@
-package Server; /**
+/**
  * This thread will handle constructing verfied clients
  * and handle removing the clients from the server
  *
  * @Author Alex Brown
  * @Author Andy Makous
  */
+
+package Server;
 
 import java.io.*;
 import java.sql.*;

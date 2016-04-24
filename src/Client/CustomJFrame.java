@@ -1,11 +1,15 @@
+/**
+ * Needed extra functionality of out the JFrame to access the text box windows and text entry boxes.
+ *
+ * @Author Alex Brown
+ * @Author Andy Makoue
+ */
+
 package Client;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
-/**
- * Created by alex on 4/23/16.
- */
 public class CustomJFrame extends JFrame {
     private JTextArea chat;
     private JTextArea userList;

@@ -1,9 +1,11 @@
-package Server; /**
+/**
  * Server.Client class to store all relevant information for threads dealing with the client
  *
  * @Author Alex Brown
  * @Author Andy Makous
  */
+
+package Server;
 
 import java.net.*;
 import java.util.concurrent.*;

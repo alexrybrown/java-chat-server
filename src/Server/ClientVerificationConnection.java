@@ -1,4 +1,4 @@
-package Server; /**
+/**
  * This thread will service single clients
  * and check their usernames before sending them into the chat room
  *
@@ -6,6 +6,7 @@ package Server; /**
  * @Author Andy Makous
  */
 
+package Server;
 
 import java.net.*;
 import java.io.*;

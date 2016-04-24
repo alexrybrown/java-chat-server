@@ -1,4 +1,4 @@
-package Server; /**
+/**
  * A chat server listening on port 1337. 
  * This chat server services clients in a chat room
  *
@@ -8,6 +8,7 @@ package Server; /**
  * @Author Andy Makous
  */
 
+package Server;
 
 import java.net.*;
 import java.io.*;

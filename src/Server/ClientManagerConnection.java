@@ -1,4 +1,4 @@
-package Server; /**
+/**
  * This thread will handle constructing verfied clients
  * and handle removing the clients from the server
  *
@@ -6,6 +6,7 @@ package Server; /**
  * @Author Andy Makous
  */
 
+package Server;
 
 import java.io.IOException;
 import java.net.*;

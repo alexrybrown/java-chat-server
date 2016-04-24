@@ -1,9 +1,11 @@
-package Client; /**
+/**
  * Creates the GU Interface AKA GUI (but GU Interface is much better).
  *
  * @Author Alex Brown
  * @Author Andy Makous
  */
+
+package Client;
 
 import javax.swing.*;
 import java.awt.event.*;
