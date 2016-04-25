@@ -95,6 +95,7 @@ public class ChatWindow {
         window.setChat(cw.ChatText);
         window.setUserList(cw.UserList);
         window.setUsernameGuidelines(cw.UsernameGuidelines);
+        window.setTabbedPane(cw.tabbedPane1);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);

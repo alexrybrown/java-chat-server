@@ -14,6 +14,7 @@ public class CustomJFrame extends JFrame {
     private JTextArea chat;
     private JTextArea userList;
     private JTextArea usernameGuidelines;
+    private JTabbedPane tabbedPane;
 
     public CustomJFrame() throws HeadlessException {
         super();
@@ -53,5 +54,13 @@ public class CustomJFrame extends JFrame {
 
     public JTextArea getUsernameGuidelines() {
         return usernameGuidelines;
+    }
+
+    public void setTabbedPane(JTabbedPane tabbedPane) {
+        this.tabbedPane = tabbedPane;
+    }
+
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
     }
 }
