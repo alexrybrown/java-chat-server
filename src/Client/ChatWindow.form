@@ -73,6 +73,7 @@
                   <component id="ffee9" class="javax.swing.JTextArea" binding="UsernameGuidelines">
                     <constraints/>
                     <properties>
+                      <editable value="false"/>
                       <text value="Usernames must only contain underscores and alphanumeric characters. &#10;Cannot exceed 16 characters.&#10;"/>
                     </properties>
                   </component>
@@ -121,6 +122,7 @@
                   <component id="f448e" class="javax.swing.JTextArea" binding="ChatText">
                     <constraints/>
                     <properties>
+                      <editable value="false"/>
                       <text value=""/>
                     </properties>
                   </component>
@@ -136,6 +138,7 @@
                   <component id="1e4ca" class="javax.swing.JTextArea" binding="UserList">
                     <constraints/>
                     <properties>
+                      <editable value="false"/>
                       <text value=""/>
                     </properties>
                   </component>

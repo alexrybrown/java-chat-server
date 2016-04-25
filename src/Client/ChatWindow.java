@@ -164,6 +164,7 @@ public class ChatWindow {
         final JScrollPane scrollPane2 = new JScrollPane();
         panel2.add(scrollPane2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         ChatText = new JTextArea();
+        ChatText.setEditable(false);
         ChatText.setText("");
         scrollPane2.setViewportView(ChatText);
         final JScrollPane scrollPane3 = new JScrollPane();
